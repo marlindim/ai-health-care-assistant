@@ -1,0 +1,38 @@
+# 1. Navigate to your project folder
+cd C:\Users\OKONIZE\source\src\ai_health_care_assistant
+
+# 2. Run BFG to remove appsettings files from all commits
+java -jar "C:\Users\OKONIZE\Downloads\bfg-1.15.0.jar" --delete-files appsettings.json
+
+# 3. Clean Git
+git reflog expire --expire=now --all
+git gc --prune=now --aggressive
+
+# 4. Create/update .gitignore
+@"
+# Visual Studio temporary files, build results, etc
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.log
+
+# Secret config files
+appsettings.json
+appsettings.*.json
+"@ | Set-Content -Path .gitignore
+
+# 5. Stage and commit .gitignore
+git add .gitignore
+git commit -m "Ignore VS files and secret appsettings"
+
+# 6. Rename branch to main (optional)
+git branch -M main
+
+# 7. Add GitHub remote (if not already added)
+git remote add origin https://github.com/marlindim/ai-health-care-assistant.git
+
+# 8. Force push cleaned repo to GitHub
+git push origin main --force
