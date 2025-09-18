@@ -2,7 +2,7 @@
 
 # Depending on the operating system of the host machines(s) that will build or run the containers, the image specified in the FROM statement may need to be changed.
 # For more information, please see https://aka.ms/containercompat
-
+#
 # This stage is used when running from VS in fast mode (Default for Debug configuration)
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-nanoserver-1809 AS base
 WORKDIR /app
@@ -14,7 +14,7 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0-nanoserver-1809 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Api/Api.csproj", "Api/"]
+COPY  ["Api/Api.csproj", "Api/"]
 COPY ["Infrastructure/Infrastructure.csproj", "Infrastructure/"]
 COPY ["Core/Core.csproj", "Core/"]
 RUN dotnet restore "./Api/Api.csproj"
@@ -32,3 +32,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Api.dll"]
+

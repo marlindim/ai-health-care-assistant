@@ -15,7 +15,7 @@ namespace Infrastructure.Services
         public GroqClient(IConfiguration config)
         {
             var apiKey = config["Groq:Api_Key"] ?? throw new Exception("Groq API key not configured");
-            _model = _model = config["Groq:Model"] ?? "openai/gpt-oss-20b";
+             _model = config["Groq:Model"] ?? "openai/gpt-oss-20b";
 
             _httpClient = new HttpClient
             {
