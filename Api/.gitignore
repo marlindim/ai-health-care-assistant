@@ -137,5 +137,5 @@ StyleCopReport.xml
 *.scc
 
 # Ignore local app settings
-appsettings.json
+
 appsettings.*.json
