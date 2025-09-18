@@ -41,8 +41,8 @@ namespace Infrastructure.Containerpipline
 
 
 
-            //Authentication - JWT(Single config)
-            var jwtKey = _IConfig["Jwt:Key"] ?? "replace-this-secret-with-secure-key";
+            //Authentication 
+            var jwtKey = _IConfig["Jwt:Key"] ?? "secret-secure-key";
             var keyBytes = Encoding.UTF8.GetBytes(jwtKey);
             Services.AddAuthentication(options =>
             {

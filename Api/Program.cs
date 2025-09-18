@@ -25,7 +25,9 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-
+// Get the port from environment variable (used by Render)
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+app.Urls.Add($"http://*:{port}");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
